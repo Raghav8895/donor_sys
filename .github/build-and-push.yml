@@ -1,0 +1,32 @@
+name: Build and Push Backend Docker Image to Docker Hub
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-push-to-docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Debug Docker environment
+        run: |
+          docker version
+          docker info
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build Docker image for TestPrep Backend
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/donor_sys:latest -f dockerfile .
+      
+      - name: Push Docker image to Docker Hub
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/donor_sys:latest
+        
