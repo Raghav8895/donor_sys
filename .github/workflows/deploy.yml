@@ -16,7 +16,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1  # change to your region
+          aws-region: us-east-1  # change to your region
 
       - name: Deploy CloudFormation Stack
         run: |
@@ -24,3 +24,23 @@ jobs:
             --stack-name donor-sys-stack \
             --template-body file://stack/donor-sys-stack.yml \
             --parameters ParameterKey=KeyName,ParameterValue=donor_key
+
+            echo "Waiting for stack creation to complete..."
+
+          aws cloudformation wait stack-create-complete \
+            --stack-name donor-sys-stack
+
+      - name: Get Stack Outputs
+        run: |
+          echo "Stack Outputs:"
+          aws cloudformation describe-stacks \
+            --stack-name donor-sys-stack \
+            --query "Stacks[0].Outputs"
+
+      - name: Get Stack Status
+        run: |
+          echo "Stack Status:"
+          aws cloudformation describe-stacks \
+            --stack-name donor-sys-stack \
+            --query "Stacks[0].StackStatus"
+
