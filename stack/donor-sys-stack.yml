@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Simple EC2 Instance running backend with Docker
+
+Parameters:
+  KeyName:
+    Type: String
+    Description: Name of an existing EC2 KeyPair to SSH into the instance
+
+Resources:
+  WebSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH and HTTP access
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      KeyName: !Ref KeyName
+      ImageId: ami-0e35ddab05955cf57  # Ubuntu 22.04 (Mumbai region)
+      SecurityGroupIds:
+        - !Ref WebSecurityGroup
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          sudo apt update && sudo apt upgrade -y
+          sudo apt install docker.io -y
+          sudo chmod 666 /var/run/docker.sock
+
+          docker pull Raghav8895/donor_sys:latest
+          docker run -d -p 80:5000 Raghav8895/donor_sys:latest
+      Tags:
+        - Key: Name
+          Value: Donor System Instance
+
+Outputs:
+  InstancePublicIP:
+    Description: Public IP address of the EC2 instance
+    Value: !GetAtt EC2Instance.PublicIp
+
+  WebsiteURL:
+    Description: Access the backend on port 80
+    Value: !Sub "http://${EC2Instance.PublicDnsName}"

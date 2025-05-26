@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4;">
+    <div class="container" style="max-width: 800px; margin: 30px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <h1 style="text-align: center; color: #333;">Donor Data</h1>
+
+        <!-- Search Form -->
+        <form method="GET" action="{{ url_for('donor_data') }}" style="margin-bottom: 20px; display: flex; gap: 10px;">
+            <input type="text" name="search" placeholder="Search by name, blood type, or location" value="{{ search_query }}"
+                   style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            <button type="submit" style="padding: 10px 15px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Search</button>
+        </form>
+
+        <!-- Donor List -->
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            {% for donor in donors %}
+            <li style="background: #f9f9f9; margin-bottom: 10px; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                <strong>Name:</strong> {{ donor.Name }} &nbsp;|&nbsp;
+                <strong>Blood Type:</strong> {{ donor['Blood Type'] }} &nbsp;|&nbsp;
+                <strong>Location:</strong> {{ donor.Location }} &nbsp;|&nbsp;
+                <strong>Contact:</strong> {{ donor.Contact }}
+
+                <!-- Edit and Delete Buttons -->
+                <div style="margin-top: 10px;">
+                    <a href="{{ url_for('edit_donor', index=loop.index0) }}" style="color: #007bff; text-decoration: none; margin-right: 10px;">Edit</a>
+                    <form action="{{ url_for('delete_donor', index=loop.index0) }}" method="POST" style="display: inline;">
+                        <button type="submit" style="color: #ff0000; background: none; border: none; cursor: pointer;">Delete</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Return to Dashboard Button -->
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{{ url_for('dashboard') }}" 
+               style="display: inline-block; padding: 10px 20px; background-color: #dc3545; color: white; text-decoration: none; border-radius: 5px; font-size: 1rem; transition: background 0.3s ease;"
+               onmouseover="this.style.background='#c82333';"
+               onmouseout="this.style.background='#dc3545';">
+                Return to Dashboard
+            </a>
+        </div>
+
+    </div> <!-- Closing the container div properly -->
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Donor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4;">
+    <div class="container" style="max-width: 500px; margin: 50px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        <h1 style="text-align: center; color: #333;">Edit Donor</h1>
+        <form method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+            <input type="text" name="name" value="{{ donor.Name }}" placeholder="Name" required style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            <input type="text" name="blood_type" value="{{ donor['Blood Type'] }}" placeholder="Blood Type" required style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            <input type="text" name="location" value="{{ donor.Location }}" placeholder="Location" required style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            <input type="text" name="contact" value="{{ donor.Contact }}" placeholder="Contact" required style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            <button type="submit" style="padding: 10px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">Save Changes</button>
+        </form>
+    </div>
+</body>
+
+</html>

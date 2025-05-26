@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donor System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container"
+        style="display: flex; justify-content: center; align-items: center; background-image: url(https://static.vecteezy.com/system/resources/previews/008/191/708/non_2x/human-blood-donate-and-heart-rate-on-white-background-free-vector.jpg);height: 666px;">
+        <div
+    style="margin: 100px; padding: 20px; background-color: #ffcccc; border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(2, 1, 1, 0.2); display: flex; justify-content: center; 
+    align-items: center; flex-direction: column; text-align: center; max-width: 500px; 
+    font-family: Arial, sans-serif; justify-content: center;">
+    <h1 style="color: #b30000; font-size: 2rem; margin-bottom: 20px;">
+        Welcome to the Blood Donor Bridge
+    </h1>
+    <div class="buttons" style="width: 100%;">
+        <a href="{{ url_for('login') }}" class="btn btn-primary" 
+           style="background: #007bff; color: #fff; border: none; padding: 10px 20px; 
+           border-radius: 5px; text-decoration: none; font-size: 1rem; margin: 5px; 
+           display: inline-block; width: calc(50% - 10px); transition: all 0.3s ease; text-align: center;"
+           onmouseover="this.style.background='#0056b3'; this.style.color='#fff';"
+           onmouseout="this.style.background='#007bff'; this.style.color='#fff';">
+            Login
+        </a>
+        <a href="{{ url_for('create_account') }}" class="btn btn-success" 
+           style="background: #28a745; color: #fff; border: none; padding: 10px 20px; 
+           border-radius: 5px; text-decoration: none; font-size: 1rem; margin: 5px; 
+           display: inline-block; width: calc(50% - 10px); transition: all 0.3s ease; text-align: center;"
+           onmouseover="this.style.background='#218838'; this.style.color='#fff';"
+           onmouseout="this.style.background='#28a745'; this.style.color='#fff';">
+            Create Account
+        </a>
+    </div>
+</div>
+
+
+    </div>
+</body>
+
+</html>

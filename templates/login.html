@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="margin: 0; padding: 0; background-image: url('https://static.vecteezy.com/system/resources/previews/008/191/708/non_2x/human-blood-donate-and-heart-rate-on-white-background-free-vector.jpg'); background-size: cover; background-position: center; height: 100vh; display: flex; justify-content: center; align-items: center; font-family: Arial, sans-serif;">
+    <div class="container" style="background-color: rgba(255, 255, 255, 0.8); padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); text-align: center; max-width: 400px; width: 100%;">
+        <h1 style="color: #333; font-size: 2rem; margin-bottom: 20px;">Login</h1>
+        <form method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+            <input type="text" name="username" placeholder="Username" required 
+                   style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem;">
+            <input type="password" name="password" placeholder="Password" required 
+                   style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem;">
+            <button type="submit" 
+                    style="padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: background 0.3s ease;"
+                    onmouseover="this.style.background='#0056b3';"
+                    onmouseout="this.style.background='#007bff';">
+                Login
+            </button>
+        </form>
+        <p style="margin-top: 20px; font-size: 0.9rem; color: #555;">
+            Don't have an account? <a href="{{ url_for('create_account') }}" style="color: #28a745; text-decoration: none;" onmouseover="this.style.color='#218838';" on
