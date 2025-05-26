@@ -1,4 +1,4 @@
-name: Build and Push Backend Docker Image to Docker Hub
+name: Build and Push to Docker Hub
 
 on:
   workflow_dispatch:
